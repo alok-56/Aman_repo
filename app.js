@@ -22,7 +22,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(session({
-    secret: 'your_secret_key', // Replace with your own secret key
+    secret: process.env.SESSION_SECRET_KEY, // Replace with your own secret key
     resave: false,
     saveUninitialized: false
 }));
@@ -54,6 +54,8 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
-app.listen(PORT);
+app.listen(PORT, () => {
+    console.log(`server is running in port no : ${PORT}`);
+});
 
 module.exports = app;

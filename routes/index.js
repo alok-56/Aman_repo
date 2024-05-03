@@ -1,7 +1,8 @@
+require('dotenv').config()
 var express = require('express');
 var router = express.Router();
 const { Sequelize, DataTypes, Op, where } = require('sequelize');
-var sequelize = new Sequelize("mysql://root:radharamanlal@localhost:3306");
+var sequelize = new Sequelize(`mysql://${process.env.DB_USER}:${process.env.DB_PASS}@localhost:${process.env.DB_PORT}`);
 var UserController = require('../Controller/usercontroller');
 var ProductController = require('../Controller/productcontroller');
 var UserModel = require("../models/UserModel");
@@ -32,10 +33,9 @@ const upload = multer({ storage });
 
 
 //DataBase creation
-
 (async function createDatabase() {
     try {
-        await sequelize.query("CREATE DATABASE IF NOT EXISTS EcommerceDB;");
+        await sequelize.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME};`);
         console.log("Database created successfully");
     } catch (error) {
         console.error("Error encountered", error);

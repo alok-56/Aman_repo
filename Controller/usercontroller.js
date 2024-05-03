@@ -1,4 +1,5 @@
 // Import necessary modules
+require('dotenv').config()
 const { Sequelize, DataTypes, Op, where } = require('sequelize');
 const User = require('../models/UserModel');
 const crypto = require("crypto");
@@ -6,11 +7,11 @@ const flash = require('express-flash');
 var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465,
+    port: process.env.NODEMAILER_PORT,
     secure: true, // use SSL
     auth: {
-        user: 'avikasaxena1923@gmail.com',
-        pass: 'ozgj qrjy vhwe nwkh'
+        user: process.env.NODEMAILER_EMAIL,
+        pass: process.env.NODEMAILER_PASS
     }
 });
 
@@ -20,7 +21,7 @@ const Order = require('../models/OrderModel');
 async function sendPasswordResetEmail(email, token) {
     try {
         await transporter.sendMail({
-            from: 'avikasaxena1923@gmail.com',
+            from: process.env.NODEMAILER_EMAIL,
             to: email,
             subject: 'Password Reset',
             text: `You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n` +

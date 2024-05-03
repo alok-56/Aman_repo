@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes, Op, where } = require('sequelize');
-var sequelize = new Sequelize("mysql://root:radharamanlal@localhost:3306");
+var sequelize = new Sequelize(`mysql://${process.env.DB_USER}:${process.env.DB_PASS}@localhost:${process.env.DB_PORT}`);
 const User = require('../models/UserModel');
 const Product = require('../models/ProductModel');
 const orderitem = require("../models/OrderItemModel");
