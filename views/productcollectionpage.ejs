@@ -1,0 +1,201 @@
+<html>
+
+<head>
+    <title>Product collection page</title>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../stylesheets/profilestyle.css">
+    <link rel="stylesheet" href="../stylesheets/productcollectionpagestyle.css">
+    <link rel="icon" type="image/jpg" href="/shopnow.jpeg">
+</head>
+
+<body>
+    <div class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                shopNow
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+
+        <div class="nav-links">
+            <a href="/homepage" target="_blank">Home</a>
+            <a href="/productcollection" target="_blank">Dashboard</a>
+            <a href="/cartpage" target="_blank">My-Cart</a>
+            <a href="/orderpage" target="_blank">My-Orders</a>
+            <% if(loggedin){%>
+                <form class="logout-form" action="/logout" method="post">
+                    <button>Logout</button>
+                </form>
+                <%} else{%>
+                    <a href="/userlogin">login</a>
+                    <a href="/userregister">Signup</a>
+                    <%}%>
+
+        </div>
+    </div>
+    <div class="mainbody">
+        <div class="sidebar">
+            <div class="kategoriler">
+                <div class="kategoribaslık">
+                    <div class="category">
+                        <div class="k"><a href="/homepage" target="_blank">Home</a></div>
+                        <div class="k"><a href="/productcollection">Dashboard</a></div>
+                        <div class="k"><a href="/profile">My Profile</a></div>
+                        <div class="k"><a href="/cartpage">My Cart</a></div>
+                        <div class="k"><a href="/orderpage">My Orders</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="renkler">
+                <h4>Ratings</h4>
+                <div class="renks">
+                    <div class="r"></div>
+                    <div class="r"></div>
+                    <div class="r"></div>
+                    <div class="r"></div>
+                    <div class="r"></div>
+                </div>
+            </div>
+            <div style="width:90%;height:290px; background-image : url('/shopping-removebg-preview.png');margin-top: 80px;background-size: contain;">
+
+            </div>
+        </div>
+
+        <div class="productlist">
+            <div class="headingsearchbox">
+                <div class="heading">
+                    <h1>Shop your favourite Products</h1>
+                </div>
+                <form class="search" action="/searchproduct" method="GET" style="flex-direction: row;">
+                    <input placeholder="Search" type="search" name="searchthisproduct">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <% if (messages.success) { %>
+                <div class="alert alert-warning" role="alert" id="success">
+                    <%= messages.success %>
+                </div>
+                <% } %>
+                    <div class="products">
+                        <div class="productbox">
+                            <% product.forEach(product => { %>
+                                <div class="productboxin">
+                                    <div class="productimgbox">
+                                        <img src="/images/<%= product.productimage %>">
+                                        <h5>
+                                            <%= product.product_id %>
+                                        </h5>
+                                    </div>
+                                    <div class="productdetailbox">
+                                        <div class="productnameavailability">
+                                            <h2>
+                                                <%= product.productname %>
+                                            </h2>
+                                            <div>
+                                                <img src="https://i.hizliresim.com/obg3cZ.png">
+                                                <img src="https://i.hizliresim.com/obg3cZ.png">
+                                                <img src="https://i.hizliresim.com/obg3cZ.png">
+                                                <img src="https://i.hizliresim.com/obg3cZ.png">
+                                                <img src="https://i.hizliresim.com/ES1Ymr.png">
+                                            </div>
+                                        </div>
+                                        <div class="productdescription">
+                                            <p>
+                                                <%= product.productdesc %>
+                                            </p>
+                                        </div>
+                                        <div class="costbuy">
+                                            <%= product.productprice %> /-
+                                                <div class="featured-content-list">
+                                                    <% if (!product.outofstock) { %>
+                                                        <button type="button" class="default-btn border-radius-5" onclick="addtocart('<%= product.product_id %>')"> Add to cart</button>
+                                                        <% } else { %>
+                                                            <button type="button" class="default-btn border-radius-5" style="background-color: rgb(183, 183, 183); " disabled> Out Of Stock</button>
+                                                            <% } %>
+                                                </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) ; %>
+                        </div>
+                    </div>
+        </div>
+    </div>
+    <hr>
+
+    <footer>
+        <div class="footermenu">
+            <div class="menuitem">ABOUT</div>
+            <div class="menuitem">TERMS</div>
+            <div class="menuitem">PRIVACY</div>
+            <div class="menuitem">PAYMENT</div>
+
+        </div>
+        <div class="social">
+
+            <i class="fab fa-google" aria-hidden="true"></i>
+            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+            <i class="fab fa-twitter" aria-hidden="true"></i>
+            <i class="fab fa-youtube" aria-hidden="true"></i>
+
+        </div>
+    </footer>
+
+    <div class="modal" id="loginmodal">
+        <div class="form_wrapper">
+            <div class="form_container">
+                <div class="title_container">
+                    <h2>User Login</h2>
+                </div>
+                <% if (messages.error) { %>
+                    <div class="alert alert-warning" role="alert">
+                        <%= messages.error %>
+                    </div>
+                    <% } %>
+                        <% if (messages.success) { %>
+                            <div class="alert alert-success" role="alert">
+                                <%= messages.success %>
+                            </div>
+                            <% } %>
+                                <div class="row clearfix">
+                                    <div class="">
+                                        <form action="/loginforcart" method="post">
+                                            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                                                <input type="email" name="email" placeholder="Enter Email" required />
+                                            </div>
+                                            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                                                <input type="password" name="password" placeholder="Enter Password" required />
+                                            </div>
+                                            <input class="button" type="submit" value="Login" />
+                                            <a class="anchor-tag" href="/forgotpassword">Forget password</a>
+                                        </form>
+                                    </div>
+                                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".r").click(function() {
+                $(".r").removeClass("coloractive");
+                $(this).addClass("coloractive");
+
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/82fb404a29.js" crossorigin="anonymous"></script>
+    <script src="../javascripts/js2.js"></script>
+</body>
+
+</html>

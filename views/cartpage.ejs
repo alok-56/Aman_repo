@@ -1,0 +1,183 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="../stylesheets/productcollectionpagestyle.css">
+    <link rel="stylesheet" href="../stylesheets/profilestyle.css">
+    <link rel="stylesheet" href="../stylesheets/cartpagestyling.css">
+    <link rel="icon" type="image/jpg" href="/shopnow.jpeg">
+    <title>Cart Page</title>
+    <script>
+        function calc(v, productid) {
+            var element = document.getElementsByClassName('quantity-input');
+            var index = Array.prototype.indexOf.call(element, v);
+            var quantity = document.getElementsByName("quantity")[index].value;
+            var priceelement = document.getElementsByClassName("ticket_price")[index];
+            var price = priceelement.innerText;
+            var total = quantity * price;
+            document.getElementsByClassName("totalprice")[index].innerText = total;
+            updateQuantity(productid, quantity);
+        }
+
+        function updateQuantity(productid, quantity) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", `/updateQuantity/${productid}`, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log("Quantity updated successfully");
+                }
+            };
+            var data = JSON.stringify({
+                quantity: quantity
+            });
+            xhr.send(data);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                shopNow
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+
+        <div class="nav-links">
+            <a href="/homepage" target="_blank">Home</a>
+            <a href="/productcollection" target="_blank">Dashboard</a>
+            <a href="/cartpage" target="_blank">My-Cart</a>
+            <a href="/orderpage" target="_blank">My-Orders</a>
+            <form class="logout-form" action="/logout" method="post">
+                <button>Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- cart items details -->
+
+    <div class="small-container cart-page">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>OrderProduct</th>
+                <th>RemoveProduct</th>
+            </tr>
+            <% if(cart.length <= 0) {%>
+                <tr class="noorder">
+                    <td></td>
+                    <td></td>
+                    <td>"Empty Cart"</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <%} else {
+                    cart.forEach(cart => { %>
+                    <tr>
+                        <td>
+                            <div class="cart-info">
+                                <img src="/images/<%= cart.product.productimage %>" alt="" />
+                                <div>
+                                    <h4>
+                                        <%= cart.product.productname %>
+                                    </h4>
+                                    <p>
+                                        <%= cart.product.productdesc %>
+                                    </p>
+                                    <span>Price</span>
+                                    <small class="ticket_price"><%= cart.product.productprice %></small>
+                                    <br />
+
+                                </div>
+                            </div>
+                        </td>
+                        <td><input type="number" name="quantity" data-product-id="<%= cart.product.product_id %>" class="quantity-input" placeholder="<%= cart.quantity %>" onchange="calc(this, `<%= cart.product.product_id %>`)" /></td>
+                        <td>
+                            <span class="totalprice"><%= cart.subtotal %></span>
+                        </td>
+
+                        <% if(outofstock) {%>
+                            <td class="buybutton "><button class="default-btn border-radius-5" style=" padding: 5px 20px 5px;" disabled>out of stock</button></td>
+                            <% } if(lessavailable) {%>
+                                <td class="buybutton "><a disabled>only <%= cart.product.quantityavail %> is available</a></td>
+                                <% } else{if(notordered)  { if(order.status != "Payment pending") { %>
+                                    <td class="buybutton "><button class="default-btn border-radius-5" style="background-color: #3498db; padding: 5px 20px 5px;" onclick="transactionpage(`<%= cart.product.product_id %>`)">Buy</button></td>
+                                    <%}  else { %>
+                                        <td class="buybutton "><button onclick="transactionpage(`<%= cart.product.product_id %>`)">Continue Your Ordered</button></td>
+                                        <% }} } %>
+                                            <td class="remove "><a onclick="removefromcart('<%= cart.product.product_id %>' )">remove from my cart</a></td>
+                    </tr>
+                    <%})}%>
+        </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer ">
+        <div class="container ">
+            <div class="row ">
+                <div class="footer-col-1 ">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iso mobile phone.</p>
+                    <div class="app-logo ">
+                        <img src="https://i.ibb.co/KbPTYYQ/play-store.png " alt=" " />
+                        <img src="https://i.ibb.co/hVM4X2p/app-store.png " alt=" " />
+                    </div>
+                </div>
+
+                <div class="footer-col-2 ">
+                    <p>
+                        Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.
+                    </p>
+                </div>
+
+                <div class="footer-col-3 ">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col-4 ">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <p class="copyright ">Copyright &copy; 2021 - Red Store</p>
+        </div>
+    </div>
+
+    <script>
+        var MenuItems = document.getElementById('MenuItems');
+        MenuItems.style.maxHeight = '0px';
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == '0px') {
+                MenuItems.style.maxHeight = '200px';
+            } else {
+                MenuItems.style.maxHeight = '0px';
+            }
+        }
+    </script>
+    <script src="/javascripts/js2.js"></script>
+</body>
+
+</html>

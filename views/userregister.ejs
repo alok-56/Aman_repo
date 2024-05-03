@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data Entry</title>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="icon" type="image/jpg" href="/shopnow.jpeg">
+    <title>User Register Page</title>
+</head>
+
+<body style="height: 100vh; display: flex; align-items: center; justify-content: center; background-color: white;overflow: hidden;">
+    <div class="loginregisterdiv"></div>
+    <div class="form_wrapper">
+        <div class="form_container">
+            <div class="title_container">
+                <h2>Register Here</h2>
+            </div>
+            <% if (messages.error) { %>
+                <div class="alert alert-warning" role="alert">
+                    <%= messages.error %>
+                </div>
+                <% } %>
+                    <% if (messages.success) { %>
+                        <div class="alert alert-success" role="alert">
+                            <%= messages.success %>
+                        </div>
+                        <% } %>
+                            <div class="row clearfix">
+                                <div class="">
+                                    <form action="/createUser" method="post">
+                                        <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                                            <input type="text" name="username" placeholder="Enter Usernamee" required />
+                                        </div>
+                                        <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                                            <input type="email" name="email" placeholder="Enter Email" required />
+                                        </div>
+                                        <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                                            <input type="password" name="password" placeholder="Enter Password" required />
+                                        </div>
+                                        <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                                            <input type="text" name="address" placeholder="Enter Address" required />
+                                        </div>
+                                        <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                                            <input type="number" name="phonenumber" placeholder="Enter PhoneNumber" required />
+                                        </div>
+                                        <div class="input_radiofield">
+                                            <label for="male">Male</label>
+                                            <input type="radio" name="gender" />
+                                            <label for="female">Female</label>
+                                            <input type="radio" name="gender" />
+                                            <label for="other">Other</label>
+                                            <input type="radio" name="gender" />
+                                        </div>
+
+                                        <div class="input_field select_option">
+                                            <select name="role">
+                        <option value="customer">customer</option>
+                        <option value="admin">admin</option>
+                      </select>
+                                            <div class="select_arrow"></div>
+                                        </div>
+                                        <div class="input_field checkbox_option">
+                                            <input type="checkbox" id="cb1">
+                                            <label for="cb1">I agree with terms and conditions</label>
+                                        </div>
+                                        <input class="button" type="submit" value="Register" />
+                                        <a class="anchor-tag" href="/userlogin">Already have an account? Login</a>
+                                    </form>
+                                </div>
+                            </div>
+        </div>
+    </div>
+</body>
+
+</html>

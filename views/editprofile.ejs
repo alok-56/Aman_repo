@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile Page</title>
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="../stylesheets/profilestyle.css">
+    <link rel="stylesheet" href="../stylesheets/editprofile.css">
+
+    <!-- FontAwesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+    <link rel="icon" type="image/jpg" href="/shopnow.jpeg">
+</head>
+
+<body>
+    <div class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                shopNow
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+
+        <div class="nav-links">
+            <a href="/productioncollection" target="_blank">Dashboard</a>
+            <a href="/cartpage" target="_blank">My-Cart</a>
+            <form class="logout-form" action="/logout" method="post">
+                <button>Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="sidebar">
+            <div class="sidebar-descrip">
+                <h1>
+                    <%=user.username%>'s Account</h1>
+                <hr>
+            </div>
+            <div class="options">
+                <div class="img-user-profile" style="width: 70%;">
+                    <img class="avatar" src="/images/user.jpg" alt="jofpin" style="    width: 100%;border-radius: 100%;" />
+                </div>
+                <form action="/delete" method="post">
+                    <button type="submit" class="delete">Delete my account</button>
+                </form>
+            </div>
+        </div>
+        <div class="white-container">
+            <div class="description">
+                <h1>Edit Profile</h1>
+                <div class="right-descrip">
+                    <h2>Manage and protect your account</h2>
+                </div>
+            </div>
+            <hr>
+            <div class="info-container">
+                <form action="/update" method="POST">
+                    <div class="left-info">
+                        <section>
+                            <div class="question">
+                                <label for="username">Username : </label>
+                            </div>
+                            <div class="answer">
+                                <input type="text" name="newusername" value="<%=user.username %>">
+                            </div>
+                        </section>
+                        <section>
+                            <div class="question ">
+                                <label for="email ">Email : </label>
+                            </div>
+                            <div class="answer ">
+                                <input type="text " name="newemail" value="<%=user.email %>">
+                            </div>
+                        </section>
+                        <section>
+                            <div class="question ">
+                                <label for="phonenumber ">Phone Number : </label>
+                            </div>
+                            <div class="answer ">
+                                <input type="text " name="newphno" value="<%=user.phonenumber %>">
+                            </div>
+                        </section>
+                    </div>
+                    <div class="verticle "></div>
+                    <div class="right-info ">
+                        <section>
+                            <div class="question ">
+                                <label for="address">Address : </label>
+                            </div>
+                            <div class="answer ">
+                                <input type="text " name="newaddress" value="<%=user.address %>">
+                            </div>
+                        </section>
+                        <section>
+                            <div class="question ">
+                                <label for="gender">Gender : </label>
+                            </div>
+                            <div class="answer ">
+                                <input type="text " name="newgender" value="<%=user.gender %>">
+                            </div>
+                        </section>
+                        <section>
+                            <div class="question">
+                                <label for="role">Role : </label>
+                            </div>
+                            <div class="answer">
+                                <input type="text" name="role" value="<%=user.role %>" disabled>
+                            </div>
+                        </section>
+                    </div>
+                    <button type="submit " class="confirm "> C <br>O <br>N <br>F<br>I <br>R <br>M
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer>
+        <div class="footer ">
+            <div class="contacts ">
+                <p><strong>Contacts : </strong>
+                    <a>(049) 543-0333</a>,
+                    <a>hiraeth@gmail.com</a>,
+                    <a>0943-678-910 </a></p>
+            </div>
+        </div>
+
+
+    </footer>
+</body>
+
+</html>

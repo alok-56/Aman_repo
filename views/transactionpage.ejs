@@ -1,0 +1,348 @@
+<html>
+
+<head>
+    <title>Transaction page</title>
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />-->
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../stylesheets/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../stylesheets/productcollectionpagestyle.css">
+    <link rel="stylesheet" href="../stylesheets/transactionstyle.css">
+    <link rel="icon" type="image/jpg" href="/shopnow.jpeg">
+    <title>Transaction Page</title>
+
+</head>
+
+<body>
+    <div class="tab_container">
+        <h5 class="title">Shop Now</h5>
+        <div class="content">
+            <div class="container-xl px-4 mt-4" id="profilepage">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="card mb-4 mb-xl-0">
+                            <div class="card-header">Shipping Details</div>
+                            <div class="card-body text-center">
+                                <img class="img-account-profile rounded-circle mb-2" src="/images/<%= productimage %>" alt="" />
+                                <div class="small font-italic text-muted mb-4">
+                                    <div>
+                                        <label for="productname">Product Name : </label>
+                                        <span><%= productname %></span>
+                                    </div>
+                                    <div>
+                                        <label for="productquantity">Quantity : </label>
+                                        <span><%= productquantity %></span>
+                                    </div>
+                                    <div>
+                                        <label for="productprice">Price : </label>
+                                        <span><%= totalamount %></span>
+                                    </div>
+                                    <a href="#">Remove</a></div>
+                            </div>
+                            <div class="details">
+                                <div class="customerdetails">
+                                    <form method="post">
+                                        <div class="inputboxs">
+                                            <span id="fullname">
+                                                    <%= username %>  
+                                                </span>
+                                        </div>
+
+                                        <div class="inputboxs">
+                                            <span id="email">
+                                                    <%=  email %>
+                                                </span>
+                                        </div>
+
+                                        <div class="inputboxs">
+                                            <span id="mobile">
+                                                    <%=  phonenumber %>
+                                                </span>
+                                        </div>
+
+                                        <div class="inputboxs">
+                                            <span id="address">
+                                                    <%=  address %>
+                                                </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8">
+                        <section id="content4" class="tab-content">
+                            <h4 class="title">Choose your payment method</h4>
+                            <div>
+                                <div class="pymt-radio">
+                                    <div class="row-payment-method payment-row">
+                                        <button class="select-icon" type="submit" onclick="displaymodal('cash')">
+                                            
+                                        </button>
+                                        <div class="select-txt">
+                                            <p class="pymt-type-name">Cash on delivery</p>
+                                            <p class="pymt-type-desc">Safe payment online. Credit card needed. PayPal account is not necessary.</p>
+                                        </div>
+                                        <div class="select-logo">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pymt-radio">
+                                    <div class="row-payment-method payment-row-last">
+                                        <button class="select-icon" type="submit" onclick="displaymodal('bank')">
+                                            
+                                        </button>
+                                        <div class="select-txt hr">
+                                            <p class="pymt-type-name">Bank Transfer</p>
+                                            <p class="pymt-type-desc">Safe money transfer using your bank account. Safe payment online. Credit card needed. Visa, Maestro, Discover, American Express</p>
+                                        </div>
+                                        <div class="select-logo">
+                                            <div class="select-logo-sub logo-spacer">
+                                                <img src="https://www.dropbox.com/s/by52qpmkmcro92l/logo-visa.png?raw=1" alt="Visa">
+                                            </div>
+                                            <div class="select-logo-sub">
+                                                <img src="https://www.dropbox.com/s/6f5dorw54xomw7p/logo-mastercard.png?raw=1" alt="MasterCard"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pymt-radio">
+                                    <div class="row-payment-method payment-row-last">
+                                        <button class="select-icon" type="submit" onclick="displaymodal('upi')">
+                                            
+                                        </button>
+                                        <div class="select-txt hr">
+                                            <p class="pymt-type-name">UPI</p>
+                                            <p class="pymt-type-desc">Safe money transfer using your bank account. Safe payment online. Credit card needed. Visa, Maestro, Discover, American Express</p>
+                                        </div>
+                                        <div class="select-logo">
+                                            <div class="select-logo-sub logo-spacer">
+                                                <img src="https://www.dropbox.com/s/by52qpmkmcro92l/logo-visa.png?raw=1" alt="Visa">
+                                            </div>
+                                            <div class="select-logo-sub">
+                                                <img src="https://www.dropbox.com/s/6f5dorw54xomw7p/logo-mastercard.png?raw=1" alt="MasterCard"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="cod_modal1">
+            <form class="in" id="confirmorder1" method="post">
+                <div class="col-xl-4">
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Shipping Details</div>
+                        <div class="card-body text-center">
+                            <div class="productdetails">
+                                <img class="img-account-profile rounded-circle mb-2" src="/images/<%= productimage %>" alt="" />
+                                <div class="small font-italic text-muted mb-4">
+                                    <div>
+                                        <label for="productname">Product Name : </label>
+                                        <span><%= productname %></span>
+                                    </div>
+                                    <div>
+                                        <label for="producdesc">Product Desc : </label>
+                                        <span><%= productdesc %></span>
+                                    </div>
+                                    <div>
+                                        <label for="productquantity">Quantity : </label>
+                                        <span><%= productquantity %></span>
+                                    </div>
+                                    <div>
+                                        <label for="productprice">Price : </label>
+                                        <span><%= totalamount %></span>
+                                    </div>
+                                    <div>
+                                        <label for="shippingprice">Shipping price : </label>
+                                        <span><%= totalamount %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details">
+                                <div class="customerdetails">
+                                    <form method="post">
+                                        <div class="inputboxs">
+                                            <span id="fullname">
+                                                <%= username %>  
+                                            </span>
+                                        </div>
+
+                                        <div class="inputboxs">
+                                            <span id="email">
+                                                <%=  email %>
+                                            </span>
+                                        </div>
+
+                                        <div class="inputboxs">
+                                            <span id="mobile">
+                                                <%=  phonenumber %>
+                                            </span>
+                                        </div>
+
+                                        <div class="inputboxs">
+                                            <span id="address">
+                                                <%=  address %>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="confirmorder(`<%= orderid %>`,'Cash On Delivery')">Confirm Order</button>
+                </div>
+            </form>
+        </div>
+        <div class="modal" id="cod_modal2">
+            <form class="in" id="confirmorder2" method="post">
+                <div class="col-xl-4">
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Shipping Details</div>
+                        <div class="card-body text-center">
+                            <div class="productdetails">
+                                <img class="img-account-profile rounded-circle mb-2" src="/images/<%= productimage %>" alt="" />
+                                <div class="small font-italic text-muted mb-4">
+                                    <div>
+                                        <label for="productname">Product Name : </label>
+                                        <span><%= productname %></span>
+                                    </div>
+                                    <div>
+                                        <label for="producdesc">Product Desc : </label>
+                                        <span><%= productdesc %></span>
+                                    </div>
+                                    <div>
+                                        <label for="productquantity">Quantity : </label>
+                                        <span><%= productquantity %></span>
+                                    </div>
+                                    <div>
+                                        <label for="productprice">Price : </label>
+                                        <span><%= totalamount %></span>
+                                    </div>
+                                    <div>
+                                        <label for="shippingprice">Shipping price : </label>
+                                        <span>100/-</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details">
+                                <div class="customerdetails">
+                                    <form method="post">
+                                        <div class="inputboxs">
+                                            <span id="fullname">
+                                                <%= username %>  
+                                            </span>
+                                        </div>
+
+                                        <div class="inputboxs">
+                                            <span id="email">
+                                                <%=  email %>
+                                            </span>
+                                        </div>
+
+                                        <div class="inputboxs">
+                                            <span id="mobile">
+                                                <%=  phonenumber %>
+                                            </span>
+                                        </div>
+
+                                        <div class="inputboxs">
+                                            <span id="address">
+                                                <%=  address %>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="confirmorder(`<%= orderid %>`,'Paid through bank')">Confirm Order</button>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal" id="cod_modal3">
+            <form class="in" id="confirmorder3" method="post">
+                <div class="col-xl-4">
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Shipping Details</div>
+                        <div class="card-body text-center">
+                            <div class="productdetails">
+                                <img class="img-account-profile rounded-circle mb-2" src="/<%= productimage %>" alt="" />
+                                <div class="small font-italic text-muted mb-4">
+                                    <div>
+                                        <label for="productname">Product Name : </label>
+                                        <span><%= productname %></span>
+                                    </div>
+                                    <div>
+                                        <label for="producdesc">Product Desc : </label>
+                                        <span><%= productdesc %></span>
+                                    </div>
+                                    <div>
+                                        <label for="productquantity">Quantity : </label>
+                                        <span><%= productquantity %></span>
+                                    </div>
+                                    <div>
+                                        <label for="productprice">Price : </label>
+                                        <span><%= totalamount %></span>
+                                    </div>
+                                    <div>
+                                        <label for="shippingprice">Shipping price : </label>
+                                        <span><%= totalamount %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details">
+                                <div class="customerdetails">
+                                    <form method="post">
+                                        <div class="inputboxs">
+                                            <span id="fullname">
+                                                <%= username %>  
+                                            </span>
+                                        </div>
+
+                                        <div class="inputboxs">
+                                            <span id="email">
+                                                <%=  email %>
+                                            </span>
+                                        </div>
+
+                                        <div class="inputboxs">
+                                            <span id="mobile">
+                                                <%=  phonenumber %>
+                                            </span>
+                                        </div>
+
+                                        <div class="inputboxs">
+                                            <span id="address">
+                                                <%=  address %>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="confirmorder(`<%= orderid %>`,'Paid through UPI')">Confirm Order</button>
+                </div>
+
+            </form>
+        </div>
+        <script src="../javascripts/js2.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                pagination: {
+                    el: ".swiper-pagination",
+                    type: "progressbar",
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        </script>
+</body>
+
+</html>

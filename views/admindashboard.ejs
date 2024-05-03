@@ -1,0 +1,181 @@
+<html>
+
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../stylesheets/profilestyle.css">
+    <link rel="stylesheet" href="../stylesheets/productcollectionpagestyle.css">
+    <link rel="stylesheet" href="../stylesheets/admindashboardstyling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="icon" type="image/jpg" href="/shopnow.jpeg">
+</head>
+
+<body>
+    <div class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                shopNow
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+           <span></span>
+           <span></span>
+           <span></span>
+         </label>
+        </div>
+
+        <div class="nav-links">
+            <a href="/homepage" target="_blank">Home</a>
+            <a href="/productcollection" target="_blank">Dashboard</a>
+            <a href="/customerorderlist">OrderList</a>
+            <a href="/customerlist">CutomerList</a>
+            <form class="logout-form" action="/logout" method="post">
+                <button>Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <!--     SIDE AREA -->
+        <div class="sideArea">
+            <div class="avatar">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCNOdyoIXDDBztO_GC8MFLmG_p6lZ2lTDh1ZnxSDawl1TZY_Zw" alt="">
+                <div class="avatarName">Welcome,<br>
+                    <%= admin%>
+                </div>
+            </div>
+            <ul class="sideMenu">
+                <li><a href="/homepage" target="_blank">Home</a></li>
+                <li><a href="/productcollection" target="_blank"><span class="fa fa-sitemap"></span>Dashboard</a></li>
+                <li><a href="/customerorderlist"><span class="fa fa-user-o"></span>OrderList</a></li>
+                <li><a href="/customerlist"><span class="fa fa-user-o"></span>CutomerList</a></li>
+                <li>
+                    <form class="logout-form" action="/logout" method="post">
+                        <i class="fa fa-envelope-o"></i>
+                        <button>Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <!--     SIDE AREA -->
+        <div class="mainArea">
+            <!-- CONTAINER  -->
+            <div class="mainContent">
+                <!-- LIST FORM -->
+                <div class="row filterGroup">
+                    <form action="/adminsearchproduct" method="post" class="formSearch fl">
+                        <input type="search" name="searchthisproduct" class="inputSearch" placeholder="Search by ID">
+                        <button type="submit" class="btnSearch"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="formHeader row">
+                    <h2 class="text-1 fl">Product List</h2>
+                    <div class="fr">
+                        <button type="button" class="btnAdd  bg-1 text-fff" onclick="addproduct()">Add Product</button>
+                    </div>
+                </div>
+                <div class="headerrow">
+                    <div class="id">ID</div>
+                    <div class="image">Image</div>
+                    <div class="name">Name</div>
+                    <div class="desc">Description</div>
+                    <div class="price">Price</div>
+                    <div class="available">Available</div>
+                    <div class="edit">Edit</div>
+                </div>
+                <form action="/updateproduct/${product_id}" method="post" name="listForm" class="form scrollX" id="mainform" enctype="multipart/form-data">
+                    <div class="table">
+                        <ul>
+                            <% products.forEach(product => { %>
+                                <li class="row">
+                                    <div class="id">
+                                        <span><input type="number" name="productid" value= "<%= product.product_id %>" data-product-id="<%= product.product_id %>" disabled></span>
+                                    </div>
+                                    <div class="image">
+                                        <span>
+                                            <input type="file" name="productimage"  accept="image/*" id="imageinput" data-product-id="<%= product.product_id %>" disabled>
+                                            <img src="/images/<%=product.productimage%>" alt="Preview" >
+                                        </span>
+                                    </div>
+                                    <div class="name">
+                                        <span><input type="text" name="productname" value="<%= product.productname %>" data-product-id="<%= product.product_id %>" disabled></span>
+                                    </div>
+                                    <div class="desc">
+                                        <input id="desc" name="productdesc" value="<%=product.productdesc %>" data-product-id="<%= product.product_id %>" disabled>
+
+                                    </div>
+                                    <div class="price">
+                                        <span><input type="number" name="productprice" value="<%= product.productprice %>" data-product-id="<%= product.product_id %>" disabled></span>
+                                    </div>
+                                    <div class="available">
+                                        <span><input type="number" name="quantityavail" value="<%= product.quantityavail %>"  data-product-id="<%= product.product_id %>"disabled></span>
+                                    </div>
+                                    <div class="cell cell-100 text-center">
+                                        <button type="submit" class="btnEdit fa fa-check bg-1 text-fff" id="update" onclick="updateproduct(event,'<%= product.product_id %>')" disabled></button>
+
+                                        <button type="button" class="btnEdit fa fa-pencil bg-1 text-fff" onclick="editbutton('<%= product.product_id %>')"></button>
+                                        <button type="button" class="btnRemove fa fa-remove bg-1 text-fff" onclick="deleteproduct('<%= product.product_id %>')"></button>
+                                    </div>
+                                </li>
+                                <% }); %>
+                        </ul>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="staticBackdropLabel">Product Details</h2>
+                    <button class="close" data-dismiss="modal" aria-label="Close" onclick="close()">
+                     X
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/createproduct" method="post" name="listForm" class="form scrollX" id="modalform" enctype="multipart/form-data">
+                        <div class="table">
+                            <ul>
+                                <li class="row">
+                                    <div class="partition">
+                                        <label for="name">Product Name</label>
+                                        <div class="name">
+                                            <span><input type="text" name="productname" placeholder="productname"></span>
+                                        </div>
+
+                                        <label for="price">Product Price</label>
+                                        <div class="price">
+                                            <span><input type="number" name="productprice" placeholder="productprice"></span>
+                                        </div>
+                                    </div>
+                                    <div class="partition">
+                                        <label for="image">Product Image</label>
+                                        <div class="image">
+                                            <span><input type="file" name="productimage"  style="display: block;"></span>
+                                        </div>
+                                        <label for="available">Product Available</label>
+                                        <div class="available">
+                                            <span><input type="number" name="quantityavail" placeholder="quantity available"></span>
+                                        </div>
+                                    </div>
+                                    <div class="desc">
+                                        <textarea name="productdesc" placeholder="productdesc"></textarea>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-danger save"></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../javascripts/js2.js"></script>
+</body>
+
+</html>

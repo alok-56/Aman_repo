@@ -1,0 +1,268 @@
+body {
+    position: relative;
+    margin: 0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+}
+
+.nav {
+    margin-top: -3.5%;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 85%;
+    height: 50%;
+    border: solid 1px #eee;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 18%;
+    padding: 0px 2%;
+    background-color: #eee;
+}
+
+.sidebar-descrip {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 5em;
+}
+
+.sidebar-descrip h1 {
+    font-size: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    text-align: center;
+    color: #545454;
+}
+
+.sidebar-descrip hr,
+.hr hr {
+    width: 100%;
+    border: 0.5px solid #dbcbb5;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5%;
+}
+
+.options button {
+    background-size: 23px;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: inherit;
+    color: #545454;
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    margin-bottom: 10%;
+}
+
+.profile {
+    background-image: url(https://i.postimg.cc/3wGNKyV1/person-icon.png);
+}
+
+.edit {
+    background-image: url(https://i.postimg.cc/jjWTTGwr/edit.png);
+}
+
+.changepass {
+    background-image: url(https://i.postimg.cc/P5wKkyXR/changepass.png);
+}
+
+.purchases {
+    background-image: url(https://i.postimg.cc/x88ypypg/purchases.png);
+}
+
+.white-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    height: 4em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.description h1 {
+    font-size: 23px;
+    font-family: "Open Sans";
+    line-height: 2px;
+    padding-top: 8px;
+}
+
+.right-descrip h2 {
+    font-size: 12px;
+    font-family: "Open Sans";
+    line-height: 2px;
+    letter-spacing: 2px;
+    color: #F46E6E;
+}
+
+.right-descrip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-container {
+    width: 90%;
+    height: 60%;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-container form {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-info,
+.right-info {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.verticle {
+    height: 100%;
+    width: 1px;
+    background: #ffde86;
+    margin-left: 20px;
+}
+
+section {
+    width: 100%;
+    height: 14%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.labels {
+    display: flex;
+    flex-direction: column;
+    width: 15em;
+    justify-content: space-evenly;
+}
+
+label {
+    color: #888888;
+    font-size: 14.5px;
+    font-family: "Open Sans";
+}
+
+.answer input {
+    width: 100%;
+    height: 55%;
+    border: solid 0.2px #ededed;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.answer {
+    width: 30%;
+}
+
+.answer {
+    width: 65%;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.infos input {
+    font-size: 14px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    padding: 3px;
+    line-height: 12px;
+    margin-bottom: 0.5em;
+    margin-top: 0.8em;
+    width: 80%;
+    outline: none;
+}
+
+input[type=text]:focus,
+input[type=tel]:focus {
+    border: 2px solid #dbcbb5;
+}
+
+input::placeholder {
+    color: rgb(183, 183, 183);
+}
+
+.confirm {
+    font-size: 12px;
+    height: 80%;
+    width: 3%;
+    background: #f5ba1a;
+    border: none;
+    color: white;
+    text-shadow: 1px 1px BLACK;
+    text-align: center;
+    line-height: 1.5em;
+    border-radius: 3px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: -15;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+
+.contacts p {
+    font-size: 13px;
+    color: rgb(1, 1, 1);
+    font-family: 'Open Sans', sans-serif;
+    margin: 1px;
+}
+
+.contacts p a {
+    color: blueviolet;
+    text-decoration: underline;
+}

@@ -1,0 +1,148 @@
+<html>
+
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../stylesheets/profilestyle.css">
+    <link rel="stylesheet" href="../stylesheets/productcollectionpagestyle.css">
+    <link rel="stylesheet" href="../stylesheets/admindashboardstyling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="icon" type="image/jpg" href="/shopnow.jpeg">
+    <title>Customer Order List</title>
+    <style>
+        .id,
+        .name,
+        .price,
+        .desc,
+        .available,
+        .edit,
+        .image {
+            border-right: 1px solid #dedede;
+        }
+        
+        input,
+        textarea,
+        select,
+        button {
+            border: none;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                shopNow
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+           <span></span>
+           <span></span>
+           <span></span>
+         </label>
+        </div>
+
+        <div class="nav-links">
+            <a href="/homepage" target="_blank">Home</a>
+            <a href="/productcollection" target="_blank">Dashboard</a>
+            <a href="/customerorderlist">OrderList</a>
+            <a href="/customerlist">CutomerList</a>
+            <form class="logout-form" action="/logout" method="post">
+                <button>Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <!--     SIDE AREA -->
+        <div class="sideArea">
+            <div class="avatar">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCNOdyoIXDDBztO_GC8MFLmG_p6lZ2lTDh1ZnxSDawl1TZY_Zw" alt="">
+                <div class="avatarName">Welcome,<br>
+                    <%= admin%>
+                </div>
+            </div>
+            <ul class="sideMenu">
+                <li><a href="/homepage" target="_blank">Home</a></li>
+                <li><a href="/productcollection" target="_blank"><span class="fa fa-sitemap"></span>Dashboard</a></li>
+                <li><a href="/customerorderlist"><span class="fa fa-user-o"></span>OrderList</a></li>
+                <li><a href="/customerlist"><span class="fa fa-user-o"></span>CutomerList</a></li>
+                <li>
+                    <form class="logout-form" action="/logout" method="post">
+                        <i class="fa fa-envelope-o"></i>
+                        <button>Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <!--     SIDE AREA -->
+        <div class="mainArea">
+            <!-- CONTAINER  -->
+            <div class="mainContent">
+                <!-- LIST FORM -->
+                <div class="row filterGroup">
+                    <form action="adminsearchuser" method="POST" class="formSearch fl">
+                        <input type="text" class="inputSearch" placeholder="Search" name="searchuser">
+                        <button type="submit" class="btnSearch"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="formHeader row">
+                    <h2 class="text-1 fl">cutomer List</h2>
+
+                </div>
+                <div class="headerrow">
+                    <div class="name">Order ID</div>
+                    <div class="name">User ID</div>
+                    <div class="name">Product ID</div>
+                    <div class="price">Quantity</div>
+                    <div class="price">Subtotal</div>
+                    <div class="name">Status</div>
+                    <div class="price">OrderDate</div>
+                    <div class="desc" style="width: 30%;">Regular Customer</div>
+                </div>
+                <form method="get" name="listForm" class="form scrollX" id="mainform" enctype="multipart/form-data">
+                    <div class="table">
+                        <ul>
+                            <% orders.forEach(orderDetail => { %>
+                                <% orderDetail.orderItems.forEach(orderItem => { %>
+                                    <li class="row" style="justify-content: flex-start;">
+                                        <div class="name">
+                                            <span><input type="number" name="orderid" value="<%= orderDetail.order.order_id %>" data-order-id="<%= orderDetail.order.order_id %>" disabled></span>
+                                        </div>
+                                        <div class="name">
+                                            <span><input type="text" name="userid" value="<%= orderDetail.order.user_id %>" data-order-id="<%= orderDetail.order.order_id %>" disabled></span>
+                                        </div>
+                                        <div class="name">
+                                            <span><input type="text" name="productid" value="<%= orderItem.product_id %>" data-order-id="<%= orderDetail.order.order_id %>" disabled></span>
+                                        </div>
+                                        <div class="price">
+                                            <span><input type="text" name="quantity" value="<%= orderItem.quantity %>" data-order-id="<%= orderDetail.order.order_id %>" disabled></span>
+                                        </div>
+                                        <div class="price">
+                                            <span><input type="text" name="subtotal" value="<%= orderDetail.order.total_amount %>" data-order-id="<%= orderDetail.order.order_id %>" disabled></span>
+                                        </div>
+                                        <div class="name">
+                                            <span><input type="number" name="status" placeholder="<%= orderDetail.order.status %>" data-order-id="<%= orderDetail.order.order_id %>" disabled></span>
+                                        </div>
+                                        <div class="price">
+                                            <span><input type="text" name="orderdate" value="<%= orderDetail.order.order_date %>" data-order-id="<%= orderDetail.order.order_id %>" disabled></span>
+                                        </div>
+                                        <div class="desc" style="width: 30%;">
+                                            <span><input type="text" name="regularcustomer" value="<%= orderDetail.order.order_date %>" data-order-id="<%= orderDetail.order.order_id %>" disabled></span>
+                                        </div>
+                                    </li>
+                                    <% }); %>
+                                        <% }); %>
+                        </ul>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../javascripts/js2.js"></script>
+</body>
+
+</html>
