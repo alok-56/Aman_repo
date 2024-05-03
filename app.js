@@ -9,7 +9,7 @@ var flash = require('express-flash');
 const bodyparser = require('body-parser');
 const multer = require("multer");
 const fs = require("fs");
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -54,6 +54,6 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
-app.listen(process.env.PORT);
+app.listen(PORT);
 
 module.exports = app;
