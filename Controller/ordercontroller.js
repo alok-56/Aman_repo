@@ -5,21 +5,7 @@ const Product = require('../models/ProductModel');
 const orderitem = require("../models/OrderItemModel");
 const OrderModel = require("../models/OrderModel");
 const { use } = require('passport');
-const stripe = require("stripe")("sk_test_51P79cpSAXJjH0dmNxYgQg3leu9kihdrFcDE3iNbFQ1Ntacg5GNt7UfVvVVbYD3AWQjJGSxIOrIt9AgrkXBhVghIS00pxS5lL5g");
 const flash = require("express-flash");
-async function payment(orderid, orderitemid, token) {
-    try {
-        const paymentIntent = await stripe.paymentIntents.create({
-
-            payment_method: token,
-            confirm: true
-        });
-        return paymentIntent;
-    } catch (error) {
-        console.error('Error processing payment:', error);
-        throw error;
-    }
-}
 
 const OrderController = {
     async addorder(req, res) {

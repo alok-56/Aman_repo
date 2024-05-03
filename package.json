@@ -12,7 +12,6 @@
         "bootstrap": "^5.3.3",
         "cookie-parser": "~1.4.4",
         "cors": "^2.8.5",
-        "crypto": "^1.0.1",
         "debug": "~2.6.9",
         "dotenv": "^16.4.5",
         "ejs": "~2.6.1",
@@ -31,7 +30,6 @@
         "passport-google-oauth20": "^2.0.0",
         "passport-local": "^1.0.0",
         "sequelize": "^6.37.1",
-        "session": "^0.1.0",
-        "stripe": "^15.3.0"
+        "session": "^0.1.0"
     }
 }
