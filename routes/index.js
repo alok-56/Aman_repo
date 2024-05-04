@@ -44,9 +44,9 @@ const upload = multer({ storage });
 
 /*Home Page */
 router.get('/homepage', function(req, res) {
-        res.render('home');
-    })
-    /*User register page */
+    res.render('home');
+});
+/*User register page */
 
 router.get('/userregister', function(req, res) {
     res.render("userregister");

@@ -37,7 +37,6 @@ const productcontroller = {
     async updateproduct(req, res) {
         const { product_id } = req.params;
         const { productname, productprice, quantityavail, productdesc } = req.body;
-        console.log(req.body);
         const image = req.file ? req.file.filename : null;
         try {
             const product = await Product.findOne({ where: { product_id: product_id } });
