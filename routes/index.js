@@ -65,7 +65,6 @@ router.post('/loginuser', UserController.loginUser);
 router.post('/loginforcart', UserController.loginUser);
 
 router.get('/profile', isAuthenticated, iscustomer, function(req, res, next) {
-
     const username = req.session.username;
     const email = req.session.email;
     const role = req.session.role;
